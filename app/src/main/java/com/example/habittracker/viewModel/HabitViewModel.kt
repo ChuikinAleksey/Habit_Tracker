@@ -24,4 +24,8 @@ class HabitViewModel: ViewModel(){
         habitList.removeAll { it.id == habitId }
     }
 
+    fun getHabitById(habitId: String): Habit? {
+        return habitList.find { it.id == habitId }
+    }
+
 }

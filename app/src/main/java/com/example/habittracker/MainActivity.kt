@@ -14,9 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import com.example.habittracker.ui.theme.HabitTrackerTheme
 import com.example.habittracker.viewModel.HabitViewModel
-import com.example.habittracker.Routes
-import com.example.habittracker.viewModel.HomeScreen
+import com.example.habittracker.ui.Routes
+import com.example.habittracker.ui.screens.HomeScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.habittracker.ui.screens.AddHabitScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,9 +47,13 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(Routes.AddHabit.route) {
-                            Text("Add Habit Screen") // заглушка пока
+                        composable(route = Routes.AddHabit.route) { navBackStackEntry ->
+                            AddHabitScreen(
+                                viewModel = habitViewModel,
+                                onNavigateBack = { navController.navigateUp() }
+                            )
                         }
+
 
                         composable(Routes.HabitDetails.route) {
                             Text("Habit Details Screen") // заглушка пока

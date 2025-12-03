@@ -1,4 +1,4 @@
-package com.example.habittracker.viewModel
+package com.example.habittracker.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
+import com.example.habittracker.viewModel.HabitViewModel
 
 
 @Composable
