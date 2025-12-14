@@ -10,7 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import com.example.habittracker.ui.theme.HabitTrackerTheme
 import com.example.habittracker.viewModel.HabitViewModel
@@ -18,6 +17,9 @@ import com.example.habittracker.ui.Routes
 import com.example.habittracker.ui.screens.HomeScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.habittracker.ui.screens.AddHabitScreen
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+import com.example.habittracker.ui.screens.HabitDetailsScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,8 +57,13 @@ class MainActivity : ComponentActivity() {
                         }
 
 
-                        composable(Routes.HabitDetails.route) {
-                            Text("Habit Details Screen") // заглушка пока
+                        composable(route = Routes.HabitDetails.route, arguments = listOf(navArgument("habitId") { type = NavType.StringType })) { navBackStackEntry ->
+                            val habitId = navBackStackEntry.arguments?.getString("habitId") ?: ""
+                            HabitDetailsScreen(
+                                viewModel = habitViewModel,
+                                habitId = habitId,
+                                onNavigateBack = { navController.navigateUp() }
+                            )
                         }
                     }
 
