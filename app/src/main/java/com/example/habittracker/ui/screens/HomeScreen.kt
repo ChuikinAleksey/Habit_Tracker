@@ -16,7 +16,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import com.example.habittracker.viewModel.HabitViewModel
-
+import com.example.habittracker.ui.components.HabitCard
 
 @Composable
 fun HomeScreen(
@@ -41,12 +41,9 @@ fun HomeScreen(
                 .padding(innerPadding)
         ) {
             items(viewModel.habitList) { habit ->
-                Text(
-                    text = habit.title,
-                    fontSize = 24.sp,
-                    modifier = Modifier.clickable {
-                        onHabitClick(habit.id)
-                    }
+                HabitCard(
+                    habit = habit,
+                    onClick = { onHabitClick(habit.id) }
                 )
             }
         }
